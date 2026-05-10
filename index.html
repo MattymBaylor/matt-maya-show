@@ -63,10 +63,11 @@ body {
   inset: 0;
   background: linear-gradient(
     to bottom,
-    transparent 30%,
-    rgba(8, 8, 12, 0.4) 55%,
-    rgba(8, 8, 12, 0.85) 75%,
-    var(--bg) 100%
+    transparent 20%,
+    rgba(8, 8, 12, 0.3) 40%,
+    rgba(8, 8, 12, 0.7) 58%,
+    rgba(8, 8, 12, 0.92) 72%,
+    var(--bg) 92%
   );
 }
 
@@ -961,6 +962,23 @@ footer .yin-yang {
 @keyframes waveBounce {
   0%, 100% { transform: scaleY(0.78); }
   50%      { transform: scaleY(1.10); }
+}
+
+/* ───── Desktop hero fix: push content below artwork text ───── */
+@media (min-width: 601px) {
+  .hero {
+    min-height: 100vh;
+  }
+  .hero-content {
+    padding-bottom: 1.5rem;
+    margin-top: auto;
+  }
+  .hero h1 {
+    text-shadow: 0 2px 20px rgba(8, 8, 12, 0.9);
+  }
+  .hero-subtitle {
+    text-shadow: 0 1px 12px rgba(8, 8, 12, 0.8);
+  }
 }
 
 /* ───── Radio Responsive ───── */
