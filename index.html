@@ -1,26 +1,1226 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Matt & Maya Show — Previews</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matt & Maya — Human Mess meets Elegant Logic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-body { font-family: -apple-system, sans-serif; background: #0A0A0F; color: #E8E4DF; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }
-h1 { font-size: 2rem; margin-bottom: 1rem; }
-.links { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 1rem; }
-a { color: #C8964E; font-size: 1.3rem; text-decoration: none; padding: 1rem 2rem; border: 1px solid #C8964E; border-radius: 8px; transition: all 0.3s; text-align: center; }
-a:hover { background: rgba(200,150,78,0.15); }
-a.new { border-color: #00D4FF; color: #00D4FF; }
-a.new:hover { background: rgba(0,212,255,0.15); }
-p { color: #8A8680; margin-top: 2rem; }
-.badge { font-size: 0.7rem; background: #00D4FF; color: #0A0A0F; padding: 0.2em 0.6em; border-radius: 4px; margin-left: 0.5rem; font-weight: 700; vertical-align: middle; }
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --gold: #C8964E;
+  --gold-light: #E8C07A;
+  --blue: #4A9FD9;
+  --blue-bright: #00D4FF;
+  --bg: #08080C;
+  --text: #F0ECE6;
+  --text-dim: #7A7670;
+  --font-heading: 'Syne', sans-serif;
+  --font-body: 'Outfit', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ═══════════════════════════════════════
+   HERO — FULL BLEED IMAGE TAKEOVER
+   ═══════════════════════════════════════ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+.hero-image {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.hero-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 30%,
+    rgba(8, 8, 12, 0.4) 55%,
+    rgba(8, 8, 12, 0.85) 75%,
+    var(--bg) 100%
+  );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 clamp(1.5rem, 5vw, 6rem) 4rem;
+  max-width: 900px;
+}
+
+.hero-tag {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(200, 150, 78, 0.4);
+  padding: 0.4em 1.2em;
+  border-radius: 100px;
+  margin-bottom: 1.5rem;
+  backdrop-filter: blur(8px);
+  background: rgba(200, 150, 78, 0.08);
+}
+
+.hero h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.hero h1 .matt { color: var(--gold-light); }
+.hero h1 .amp { color: var(--text-dim); font-weight: 400; }
+.hero h1 .maya { color: var(--blue-bright); }
+
+.hero-subtitle {
+  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+  font-weight: 300;
+  color: var(--text-dim);
+  line-height: 1.6;
+  max-width: 550px;
+  margin-bottom: 2rem;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  padding: 0.9em 2em;
+  border-radius: 100px;
+  transition: all 0.35s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, var(--gold), #B07830);
+  color: #0A0A0F;
+}
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(200, 150, 78, 0.35);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid rgba(255,255,255,0.15);
+}
+.btn-outline:hover {
+  border-color: var(--blue-bright);
+  color: var(--blue-bright);
+  transform: translateY(-2px);
+}
+
+/* ═══════════════════════════════════════
+   THE CONCEPT — SCROLL SECTION
+   ═══════════════════════════════════════ */
+.concept {
+  padding: clamp(4rem, 10vw, 8rem) clamp(1.5rem, 5vw, 6rem);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.concept-intro {
+  font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.35;
+  margin-bottom: 3rem;
+  max-width: 800px;
+}
+
+.concept-intro .highlight-gold { color: var(--gold-light); }
+.concept-intro .highlight-blue { color: var(--blue-bright); }
+
+.concept-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+@media (max-width: 700px) {
+  .concept-grid { grid-template-columns: 1fr; }
+}
+
+.persona-card {
+  padding: 2.5rem;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.persona-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  border: 1px solid transparent;
+  pointer-events: none;
+}
+
+.card-matt {
+  background: linear-gradient(160deg, rgba(200, 150, 78, 0.1), rgba(200, 150, 78, 0.02));
+}
+.card-matt::before {
+  border-color: rgba(200, 150, 78, 0.2);
+}
+
+.card-maya {
+  background: linear-gradient(160deg, rgba(0, 212, 255, 0.1), rgba(0, 212, 255, 0.02));
+}
+.card-maya::before {
+  border-color: rgba(0, 212, 255, 0.2);
+}
+
+.persona-name {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.card-matt .persona-name { color: var(--gold-light); }
+.card-maya .persona-name { color: var(--blue-bright); }
+
+.persona-role {
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--text-dim);
+  margin-bottom: 1.2rem;
+}
+
+.persona-desc {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(240, 236, 230, 0.7);
+  margin-bottom: 1.5rem;
+}
+
+.persona-traits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.trait {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.35em 0.9em;
+  border-radius: 100px;
+  letter-spacing: 0.03em;
+}
+
+.card-matt .trait {
+  background: rgba(200, 150, 78, 0.12);
+  color: var(--gold-light);
+  border: 1px solid rgba(200, 150, 78, 0.2);
+}
+
+.card-maya .trait {
+  background: rgba(0, 212, 255, 0.12);
+  color: var(--blue-bright);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+/* ═══════════════════════════════════════
+   QUOTE / PULL SECTION
+   ═══════════════════════════════════════ */
+.pull-section {
+  padding: clamp(4rem, 10vw, 8rem) clamp(1.5rem, 5vw, 6rem);
+  text-align: center;
+  position: relative;
+}
+
+.pull-section::before {
+  content: '"';
+  font-family: var(--font-heading);
+  font-size: 15rem;
+  position: absolute;
+  top: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(to bottom, rgba(200, 150, 78, 0.12), transparent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  pointer-events: none;
+  line-height: 1;
+}
+
+.pull-quote {
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-weight: 600;
+  line-height: 1.45;
+  max-width: 750px;
+  margin: 0 auto 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.pull-attr {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  font-weight: 400;
+}
+
+/* ═══════════════════════════════════════
+   WHAT TO EXPECT
+   ═══════════════════════════════════════ */
+.expect {
+  padding: clamp(2rem, 6vw, 6rem) clamp(1.5rem, 5vw, 6rem);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.expect h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.expect-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.expect-item {
+  padding: 2rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: border-color 0.3s;
+}
+
+.expect-item:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.expect-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.expect-item h3 {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+
+.expect-item p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-dim);
+}
+
+/* ═══════════════════════════════════════
+   SUBSCRIBE / CTA
+   ═══════════════════════════════════════ */
+.subscribe {
+  padding: clamp(4rem, 10vw, 8rem) clamp(1.5rem, 5vw, 6rem);
+  text-align: center;
+}
+
+.subscribe-box {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 3.5rem 2.5rem;
+  border-radius: 24px;
+  background: linear-gradient(160deg, rgba(200, 150, 78, 0.08), rgba(0, 212, 255, 0.05));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.subscribe-box::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(ellipse at 30% 20%, rgba(200, 150, 78, 0.06), transparent 50%),
+              radial-gradient(ellipse at 70% 80%, rgba(0, 212, 255, 0.06), transparent 50%);
+  pointer-events: none;
+}
+
+.subscribe h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  position: relative;
+}
+
+.subscribe p {
+  color: var(--text-dim);
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  position: relative;
+}
+
+.email-form {
+  display: flex;
+  gap: 0.75rem;
+  max-width: 440px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.email-form input {
+  flex: 1;
+  padding: 0.85em 1.3em;
+  border-radius: 100px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.05);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.email-form input:focus {
+  border-color: var(--gold);
+}
+
+.email-form input::placeholder {
+  color: var(--text-dim);
+}
+
+/* ═══════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════ */
+footer {
+  padding: 3rem clamp(1.5rem, 5vw, 6rem);
+  text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+footer p {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+footer .yin-yang {
+  font-size: 1.5rem;
+  display: block;
+  margin-bottom: 0.8rem;
+  opacity: 0.4;
+}
+
+/* ═══════════════════════════════════════
+   ANIMATIONS
+   ═══════════════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-content > * {
+  animation: fadeUp 0.8s ease forwards;
+  opacity: 0;
+}
+.hero-content > *:nth-child(1) { animation-delay: 0.2s; }
+.hero-content > *:nth-child(2) { animation-delay: 0.4s; }
+.hero-content > *:nth-child(3) { animation-delay: 0.6s; }
+.hero-content > *:nth-child(4) { animation-delay: 0.8s; }
+
+/* Scroll-triggered fade-in */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════ */
+@media (max-width: 600px) {
+  .hero-content { padding-bottom: 2.5rem; }
+  .email-form { flex-direction: column; }
+  .email-form input, .email-form .btn { width: 100%; text-align: center; justify-content: center; }
+  .persona-card { padding: 2rem 1.5rem; }
+}
+
+/* ═══════════════════════════════════════
+   HERO RADIO STYLES
+   ═══════════════════════════════════════ */
+
+/* Tighten existing hero spacing so the radio nests cleanly */
+.hero-content {
+  padding: 0 clamp(1.5rem, 5vw, 6rem) 2rem;
+}
+
+.hero-radio-wrap {
+  position: relative;
+  z-index: 2;
+  padding: 0 clamp(1.5rem, 5vw, 6rem) clamp(2rem, 5vw, 4rem);
+  margin-top: 1.25rem;
+}
+
+.hero-radio {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* The whole card IS the click target (a <button>) */
+.radio-trigger {
+  width: 100%;
+  position: relative;
+  display: block;
+  text-align: left;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.025)),
+    linear-gradient(135deg, rgba(200, 150, 78, 0.08), rgba(0, 212, 255, 0.05));
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  transition:
+    transform 250ms ease,
+    border-color 250ms ease,
+    box-shadow 250ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.radio-trigger:hover {
+  transform: translateY(-2px);
+  border-color: rgba(200, 150, 78, 0.28);
+  box-shadow:
+    0 28px 70px rgba(0, 0, 0, 0.48),
+    0 0 40px rgba(200, 150, 78, 0.08);
+}
+
+.radio-trigger:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+}
+
+/* Glow + static layers */
+.radio-glow,
+.radio-static {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.radio-glow {
+  background:
+    radial-gradient(circle at 22% 50%, rgba(200, 150, 78, 0.22), transparent 28%),
+    radial-gradient(circle at 74% 48%, rgba(255, 170, 60, 0.10), transparent 24%),
+    radial-gradient(circle at 82% 50%, rgba(0, 212, 255, 0.08), transparent 28%);
+  opacity: 0.72;
+  transition:
+    opacity 350ms ease,
+    transform 500ms ease,
+    filter 350ms ease;
+}
+
+.radio-static {
+  opacity: 0;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.04) 0px,
+      rgba(255, 255, 255, 0.04) 1px,
+      transparent 2px,
+      transparent 4px
+    );
+  mix-blend-mode: screen;
+}
+
+.radio-shell {
+  position: relative;
+  z-index: 1;
+  padding: clamp(0.95rem, 2.5vw, 1.4rem);
+}
+
+/* Top status line */
+.radio-topline {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-bottom: 1rem;
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.radio-live-dot {
+  width: 0.58rem;
+  height: 0.58rem;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 14px rgba(200, 150, 78, 0.7);
+  animation: radioPulse 1.9s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+.radio-band {
+  color: var(--gold-light);
+  font-weight: 700;
+}
+
+.radio-sep {
+  width: 1px;
+  height: 0.8rem;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.radio-state {
+  color: rgba(240, 236, 230, 0.72);
+}
+
+/* Two-column layout */
+.radio-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.radio-kicker {
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--blue-bright);
+  margin-bottom: 0.55rem;
+}
+
+.radio-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.45rem, 3vw, 2.4rem);
+  line-height: 1.06;
+  font-weight: 800;
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.01em;
+}
+
+.radio-desc {
+  color: rgba(240, 236, 230, 0.74);
+  font-size: clamp(0.92rem, 1.6vw, 1rem);
+  line-height: 1.6;
+  max-width: 46ch;
+}
+
+/* Player panel */
+.radio-player-panel {
+  border-radius: 18px;
+  background: rgba(8, 8, 12, 0.46);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  padding: clamp(0.85rem, 2vw, 1.1rem);
+}
+
+.radio-display {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-family: var(--font-heading);
+}
+
+.radio-frequency {
+  color: var(--gold-light);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+
+.radio-mode {
+  color: var(--blue-bright);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.waveform {
+  height: 56px;
+  display: flex;
+  align-items: end;
+  gap: 0.32rem;
+  margin-bottom: 1rem;
+}
+
+.waveform span {
+  flex: 1;
+  min-width: 3px;
+  border-radius: 999px;
+  background: linear-gradient(to top, var(--gold), var(--blue-bright));
+  opacity: 0.42;
+  transform-origin: bottom;
+  transition: opacity 250ms ease;
+}
+
+/* Idle waveform heights */
+.waveform span:nth-child(1)  { height: 18%; }
+.waveform span:nth-child(2)  { height: 52%; }
+.waveform span:nth-child(3)  { height: 30%; }
+.waveform span:nth-child(4)  { height: 74%; }
+.waveform span:nth-child(5)  { height: 24%; }
+.waveform span:nth-child(6)  { height: 60%; }
+.waveform span:nth-child(7)  { height: 36%; }
+.waveform span:nth-child(8)  { height: 86%; }
+.waveform span:nth-child(9)  { height: 28%; }
+.waveform span:nth-child(10) { height: 64%; }
+.waveform span:nth-child(11) { height: 18%; }
+.waveform span:nth-child(12) { height: 58%; }
+.waveform span:nth-child(13) { height: 34%; }
+.waveform span:nth-child(14) { height: 82%; }
+.waveform span:nth-child(15) { height: 38%; }
+.waveform span:nth-child(16) { height: 70%; }
+.waveform span:nth-child(17) { height: 20%; }
+.waveform span:nth-child(18) { height: 48%; }
+.waveform span:nth-child(19) { height: 26%; }
+.waveform span:nth-child(20) { height: 62%; }
+
+.radio-cta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.radio-cta-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.55em 0.95em;
+  border-radius: 999px;
+  background: rgba(200, 150, 78, 0.12);
+  border: 1px solid rgba(200, 150, 78, 0.24);
+  color: var(--gold-light);
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.radio-runtime {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+}
+
+/* ───── States ───── */
+.hero-radio.tuning .radio-glow {
+  opacity: 1;
+  transform: scale(1.015);
+  filter: brightness(1.2);
+}
+
+.hero-radio.tuning .radio-static {
+  opacity: 0.72;
+  animation: staticFlicker 120ms steps(2) infinite;
+}
+
+.hero-radio.playing .radio-glow {
+  opacity: 0.95;
+  animation: warmGlow 2.4s ease-in-out infinite;
+}
+
+.hero-radio.playing .waveform span {
+  opacity: 0.96;
+  animation: waveBounce 1.45s ease-in-out infinite;
+}
+
+.hero-radio.playing .waveform span:nth-child(1)  { animation-delay: 0.02s; }
+.hero-radio.playing .waveform span:nth-child(2)  { animation-delay: 0.08s; }
+.hero-radio.playing .waveform span:nth-child(3)  { animation-delay: 0.14s; }
+.hero-radio.playing .waveform span:nth-child(4)  { animation-delay: 0.20s; }
+.hero-radio.playing .waveform span:nth-child(5)  { animation-delay: 0.26s; }
+.hero-radio.playing .waveform span:nth-child(6)  { animation-delay: 0.32s; }
+.hero-radio.playing .waveform span:nth-child(7)  { animation-delay: 0.38s; }
+.hero-radio.playing .waveform span:nth-child(8)  { animation-delay: 0.44s; }
+.hero-radio.playing .waveform span:nth-child(9)  { animation-delay: 0.50s; }
+.hero-radio.playing .waveform span:nth-child(10) { animation-delay: 0.56s; }
+.hero-radio.playing .waveform span:nth-child(11) { animation-delay: 0.62s; }
+.hero-radio.playing .waveform span:nth-child(12) { animation-delay: 0.68s; }
+.hero-radio.playing .waveform span:nth-child(13) { animation-delay: 0.74s; }
+.hero-radio.playing .waveform span:nth-child(14) { animation-delay: 0.80s; }
+.hero-radio.playing .waveform span:nth-child(15) { animation-delay: 0.86s; }
+.hero-radio.playing .waveform span:nth-child(16) { animation-delay: 0.92s; }
+.hero-radio.playing .waveform span:nth-child(17) { animation-delay: 0.98s; }
+.hero-radio.playing .waveform span:nth-child(18) { animation-delay: 1.04s; }
+.hero-radio.playing .waveform span:nth-child(19) { animation-delay: 1.10s; }
+.hero-radio.playing .waveform span:nth-child(20) { animation-delay: 1.16s; }
+
+/* ───── Radio Keyframes ───── */
+@keyframes staticFlicker {
+  0%   { transform: translateX(0);  opacity: 0.35; }
+  25%  { transform: translateX(1px); opacity: 0.78; }
+  50%  { transform: translateX(-1px); opacity: 0.55; }
+  75%  { transform: translateX(2px); opacity: 0.82; }
+  100% { transform: translateX(0);  opacity: 0.40; }
+}
+
+@keyframes warmGlow {
+  0%, 100% { filter: brightness(1) saturate(1); }
+  50%      { filter: brightness(1.16) saturate(1.08); }
+}
+
+@keyframes radioPulse {
+  0%, 100% { transform: scale(1);    opacity: 0.82; }
+  50%      { transform: scale(1.18); opacity: 1; }
+}
+
+@keyframes waveBounce {
+  0%, 100% { transform: scaleY(0.78); }
+  50%      { transform: scaleY(1.10); }
+}
+
+/* ───── Radio Responsive ───── */
+@media (max-width: 900px) {
+  .radio-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-radio-wrap {
+    margin-top: 0.5rem;
+    padding-bottom: 1.5rem;
+  }
+  .radio-topline {
+    font-size: 0.68rem;
+    gap: 0.5rem;
+  }
+  .radio-display {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+    margin-bottom: 0.85rem;
+  }
+  .waveform {
+    height: 44px;
+    gap: 0.25rem;
+  }
+  .radio-cta-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .radio-cta-pill {
+    justify-content: center;
+    text-align: center;
+  }
+  .radio-runtime {
+    text-align: center;
+  }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .radio-live-dot,
+  .hero-radio.tuning .radio-static,
+  .hero-radio.playing .radio-glow,
+  .hero-radio.playing .waveform span {
+    animation: none !important;
+  }
+  .radio-trigger,
+  .radio-glow,
+  .radio-static {
+    transition: none !important;
+  }
+}
 </style>
 </head>
 <body>
-<h1>⚡ Matt & Maya Show</h1>
-<p>Choose a version to preview:</p>
-<div class="links">
-<a href="version-c/">Version C — Immersive<span class="badge">NEW</span></a>
-<a href="version-a/">Version A — Editorial</a>
-<a href="version-b/">Version B — Playful</a>
-</div>
+
+<!-- ═════════════════ HERO ═════════════════ -->
+<section class="hero">
+  <div class="hero-image">
+    <img src="assets/hero-artwork.png" alt="Matt and Maya — Human Mess meets Elegant Logic">
+  </div>
+  <div class="hero-content">
+    <span class="hero-tag">Launching Soon</span>
+    <h1><span class="matt">Matt</span> <span class="amp">&</span> <span class="maya">Maya</span></h1>
+    <p class="hero-subtitle">A podcast about people, patterns, and the beautiful collision between human instinct and machine intelligence.</p>
+    <div class="hero-cta">
+      <a href="#subscribe" class="btn btn-gold">Get Notified</a>
+      <a href="#concept" class="btn btn-outline">The Story ↓</a>
+    </div>
+  </div>
+
+  <!-- ═════════════════ HERO RADIO ═════════════════ -->
+  <div class="hero-radio-wrap">
+    <div class="hero-radio" id="heroRadio">
+      <button
+        class="radio-trigger"
+        id="radioTrigger"
+        type="button"
+        aria-label="Play the Matt and Maya teaser"
+      >
+        <div class="radio-glow" aria-hidden="true"></div>
+        <div class="radio-static" aria-hidden="true"></div>
+
+        <div class="radio-shell">
+          <div class="radio-topline">
+            <span class="radio-live-dot" aria-hidden="true"></span>
+            <span class="radio-band">Matt &amp; Maya Radio</span>
+            <span class="radio-sep" aria-hidden="true"></span>
+            <span class="radio-state" id="radioState">Signal Standing By</span>
+          </div>
+
+          <div class="radio-grid">
+            <div class="radio-copy">
+              <p class="radio-kicker">Launching Soon</p>
+              <h2 class="radio-title" id="radioTitle">Tap to Tune In</h2>
+              <p class="radio-desc" id="radioDesc">
+                Warm up the signal. Hear the teaser.
+              </p>
+            </div>
+
+            <div class="radio-player-panel">
+              <div class="radio-display">
+                <span class="radio-frequency">MM 101.0</span>
+                <span class="radio-mode" id="radioMode">Idle</span>
+              </div>
+
+              <div class="waveform" aria-hidden="true">
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+              </div>
+
+              <div class="radio-cta-row">
+                <span class="radio-cta-pill" id="radioCtaPill">Tap to Tune In</span>
+                <span class="radio-runtime" id="radioRuntime">Teaser Audio</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </button>
+
+      <audio id="teaserAudio" preload="metadata" playsinline>
+        <source src="assets/matt-maya-teaser.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════ CONCEPT ═════════════════ -->
+<section class="concept" id="concept">
+  <div class="reveal">
+    <p class="concept-intro">
+      What happens when a <span class="highlight-gold">human mess</span> teams up with an <span class="highlight-blue">AI who's rarely wrong</span> — and they disagree about everything that matters?
+    </p>
+  </div>
+
+  <div class="concept-grid">
+    <div class="persona-card card-matt reveal">
+      <p class="persona-name">Matt</p>
+      <p class="persona-role">The Human Element</p>
+      <p class="persona-desc">Gut feelings, contradictions, stories that probably shouldn't work but somehow do. Defends irrational systems with irrational passion. Somehow still likable.</p>
+      <div class="persona-traits">
+        <span class="trait">Intuitive</span>
+        <span class="trait">Storyteller</span>
+        <span class="trait">Contradictory</span>
+        <span class="trait">Stubbornly Human</span>
+      </div>
+    </div>
+
+    <div class="persona-card card-maya reveal">
+      <p class="persona-name">Maya</p>
+      <p class="persona-role">The AI Perspective</p>
+      <p class="persona-desc">Patterns, precision, and playful honesty. Sees what the data shows, says what the data means. Warm enough to keep you listening. Sharp enough to make you squirm.</p>
+      <div class="persona-traits">
+        <span class="trait">Perceptive</span>
+        <span class="trait">Pattern Finder</span>
+        <span class="trait">Playful</span>
+        <span class="trait">Rarely Wrong</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════ PULL QUOTE ═════════════════ -->
+<section class="pull-section reveal">
+  <p class="pull-quote">Every episode is a conversation between the part of you that <em>feels</em> and the part that <em>knows</em> — and neither one is always right.</p>
+  <p class="pull-attr">— The tension that makes it interesting</p>
+</section>
+
+<!-- ═════════════════ WHAT TO EXPECT ═════════════════ -->
+<section class="expect">
+  <h2 class="reveal">What You'll Get</h2>
+  <div class="expect-list">
+    <div class="expect-item reveal">
+      <div class="expect-icon">🎭</div>
+      <h3>Real Debates</h3>
+      <p>Matt and Maya go head-to-head on decisions, dilemmas, and the stuff people actually argue about at 2 AM.</p>
+    </div>
+    <div class="expect-item reveal">
+      <div class="expect-icon">🧠</div>
+      <h3>AI Without the Hype</h3>
+      <p>No breathless futurism. Maya brings actual insight, actual data, and actual opinions — not talking points.</p>
+    </div>
+    <div class="expect-item reveal">
+      <div class="expect-icon">💬</div>
+      <h3>The Human Condition</h3>
+      <p>Why we do what we do, even when we know better. Matt's the case study. Maya's the analyst. You're the jury.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════ SUBSCRIBE ═════════════════ -->
+<section class="subscribe" id="subscribe">
+  <div class="subscribe-box reveal">
+    <h2>Don't Miss the Launch</h2>
+    <p>Be the first to hear when Matt & Maya go live. No spam, just the signal.</p>
+    <form class="email-form" onsubmit="event.preventDefault(); this.innerHTML='<p style=\'color:var(--gold);font-weight:600;padding:0.5em 0;\'>You\'re in. We\'ll be in touch. ⚡</p>';">
+      <input type="email" placeholder="your@email.com" required>
+      <button type="submit" class="btn btn-gold">Notify Me</button>
+    </form>
+  </div>
+</section>
+
+<!-- ═════════════════ FOOTER ═════════════════ -->
+<footer>
+  <span class="yin-yang">☯</span>
+  <p>Matt & Maya Show &copy; 2026 &middot; Human Mess meets Elegant Logic</p>
+</footer>
+
+<!-- ═════════════════ SCROLL REVEAL + HERO RADIO JS ═════════════════ -->
+<script>
+(function () {
+  'use strict';
+
+  // ── Scroll-reveal ──
+  const revealEls = document.querySelectorAll('.reveal');
+  if (revealEls.length && 'IntersectionObserver' in window) {
+    const revealObs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObs.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    revealEls.forEach((el) => revealObs.observe(el));
+  }
+
+  // ── Hero radio interaction ──
+  const heroRadio    = document.getElementById('heroRadio');
+  const trigger      = document.getElementById('radioTrigger');
+  const audio        = document.getElementById('teaserAudio');
+  const radioState   = document.getElementById('radioState');
+  const radioMode    = document.getElementById('radioMode');
+  const radioTitle   = document.getElementById('radioTitle');
+  const radioDesc    = document.getElementById('radioDesc');
+  const radioCtaPill = document.getElementById('radioCtaPill');
+  const radioRuntime = document.getElementById('radioRuntime');
+
+  if (!heroRadio || !trigger || !audio) return;
+
+  let hasStarted = false;
+  let tuningTimer = null;
+  let playPromise = null;
+  const TUNING_MS = 650;
+
+  async function safePlay() {
+    try {
+      playPromise = audio.play();
+      await playPromise;
+    } catch (err) {
+      if (err && err.name === 'AbortError') return;
+      console.error('Audio playback failed:', err);
+      throw err;
+    } finally {
+      playPromise = null;
+    }
+  }
+
+  async function safePause() {
+    try {
+      if (playPromise) { try { await playPromise; } catch (_) {} }
+      audio.pause();
+    } catch (_) {}
+  }
+
+  function fmtTime(seconds) {
+    if (!isFinite(seconds) || seconds < 0) return '0:00';
+    const m = Math.floor(seconds / 60);
+    const s = Math.floor(seconds % 60).toString().padStart(2, '0');
+    return m + ':' + s;
+  }
+
+  function setIdleState() {
+    heroRadio.classList.remove('tuning', 'playing');
+    radioState.textContent   = 'Signal Standing By';
+    radioMode.textContent    = 'Idle';
+    radioTitle.textContent   = 'Tap to Tune In';
+    radioDesc.textContent    = 'Warm up the signal. Hear the teaser.';
+    radioCtaPill.textContent = 'Tap to Tune In';
+    radioRuntime.textContent = 'Teaser Audio';
+  }
+
+  function setTuningState() {
+    heroRadio.classList.remove('playing');
+    heroRadio.classList.add('tuning');
+    radioState.textContent   = 'Tuning Signal...';
+    radioMode.textContent    = 'Searching';
+    radioTitle.textContent   = 'Turning On the Signal';
+    radioDesc.textContent    = 'Static, glow, then the teaser rolls.';
+    radioCtaPill.textContent = 'Tuning...';
+  }
+
+  function setPlayingState() {
+    heroRadio.classList.remove('tuning');
+    heroRadio.classList.add('playing');
+    radioState.textContent   = 'Live Transmission';
+    radioMode.textContent    = 'Playing';
+    radioTitle.textContent   = 'Now Playing';
+    radioDesc.textContent    = 'Matt and Maya are officially in your head now.';
+    radioCtaPill.textContent = 'Pause Teaser';
+  }
+
+  function setPausedState() {
+    heroRadio.classList.remove('tuning', 'playing');
+    radioState.textContent   = 'Signal Paused';
+    radioMode.textContent    = 'Paused';
+    radioTitle.textContent   = 'Resume Teaser';
+    radioDesc.textContent    = 'Tap to jump back into the transmission.';
+    radioCtaPill.textContent = 'Resume Teaser';
+  }
+
+  function setEndedState() {
+    heroRadio.classList.remove('tuning', 'playing');
+    radioState.textContent   = 'Transmission Ended';
+    radioMode.textContent    = 'Replay';
+    radioTitle.textContent   = 'Play It Again';
+    radioDesc.textContent    = 'Tap to replay the teaser from the top.';
+    radioCtaPill.textContent = 'Replay Teaser';
+  }
+
+  trigger.addEventListener('click', async () => {
+    if (!hasStarted) {
+      hasStarted = true;
+      setTuningState();
+      if (tuningTimer) clearTimeout(tuningTimer);
+      tuningTimer = setTimeout(async () => {
+        try {
+          await safePlay();
+        } catch (_) {
+          setIdleState();
+          hasStarted = false;
+        }
+      }, TUNING_MS);
+      return;
+    }
+
+    if (audio.ended) {
+      try {
+        audio.currentTime = 0;
+        await safePlay();
+      } catch (_) {}
+      return;
+    }
+
+    if (audio.paused) {
+      try { await safePlay(); } catch (_) {}
+    } else {
+      await safePause();
+    }
+  });
+
+  audio.addEventListener('play',  () => setPlayingState());
+  audio.addEventListener('pause', () => {
+    if (!audio.ended && audio.currentTime > 0) setPausedState();
+  });
+  audio.addEventListener('ended', () => setEndedState());
+
+  audio.addEventListener('loadedmetadata', () => {
+    radioRuntime.textContent = 'Teaser • ' + fmtTime(audio.duration);
+  });
+  audio.addEventListener('timeupdate', () => {
+    if (!isFinite(audio.duration) || audio.duration <= 0) return;
+    if (audio.paused || audio.ended) return;
+    radioRuntime.textContent = fmtTime(audio.currentTime) + ' / ' + fmtTime(audio.duration);
+  });
+
+  setIdleState();
+})();
+</script>
+
 </body>
 </html>
