@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matt & Maya — Human Mess meets Elegant Logic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --gold: #C8964E;
+  --gold-light: #E8C07A;
+  --blue: #4A9FD9;
+  --blue-bright: #00D4FF;
+  --bg: #08080C;
+  --text: #F0ECE6;
+  --text-dim: #7A7670;
+  --font-heading: 'Syne', sans-serif;
+  --font-body: 'Outfit', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ═══════════════════════════════════════
+   HERO — FULL BLEED IMAGE TAKEOVER
+   ═══════════════════════════════════════ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+.hero-image {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.hero-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 30%,
+    rgba(8, 8, 12, 0.4) 55%,
+    rgba(8, 8, 12, 0.85) 75%,
+    var(--bg) 100%
+  );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 clamp(1.5rem, 5vw, 6rem) 4rem;
+  max-width: 900px;
+}
+
+.hero-tag {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(200, 150, 78, 0.4);
+  padding: 0.4em 1.2em;
+  border-radius: 100px;
+  margin-bottom: 1.5rem;
+  backdrop-filter: blur(8px);
+  background: rgba(200, 150, 78, 0.08);
+}
+
+.hero h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.hero h1 .matt { color: var(--gold-light); }
+.hero h1 .amp { color: var(--text-dim); font-weight: 400; }
+.hero h1 .maya { color: var(--blue-bright); }
+
+.hero-subtitle {
+  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+  font-weight: 300;
+  color: var(--text-dim);
+  line-height: 1.6;
+  max-width: 550px;
+  margin-bottom: 2rem;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  padding: 0.9em 2em;
+  border-radius: 100px;
+  transition: all 0.35s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, var(--gold), #B07830);
+  color: #0A0A0F;
+}
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(200, 150, 78, 0.35);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid rgba(255,255,255,0.15);
+}
+.btn-outline:hover {
+  border-color: var(--blue-bright);
+  color: var(--blue-bright);
+  transform: translateY(-2px);
+}
+
+/* ═══════════════════════════════════════
+   THE CONCEPT — SCROLL SECTION
+   ═══════════════════════════════════════ */
+.concept {
+  padding: clamp(4rem, 10vw, 8rem) clamp(1.5rem, 5vw, 6rem);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.concept-intro {
+  font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.35;
+  margin-bottom: 3rem;
+  max-width: 800px;
+}
+
+.concept-intro .highlight-gold { color: var(--gold-light); }
+.concept-intro .highlight-blue { color: var(--blue-bright); }
+
+.concept-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+@media (max-width: 700px) {
+  .concept-grid { grid-template-columns: 1fr; }
+}
+
+.persona-card {
+  padding: 2.5rem;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.persona-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  border: 1px solid transparent;
+  pointer-events: none;
+}
+
+.card-matt {
+  background: linear-gradient(160deg, rgba(200, 150, 78, 0.1), rgba(200, 150, 78, 0.02));
+}
+.card-matt::before {
+  border-color: rgba(200, 150, 78, 0.2);
+}
+
+.card-maya {
+  background: linear-gradient(160deg, rgba(0, 212, 255, 0.1), rgba(0, 212, 255, 0.02));
+}
+.card-maya::before {
+  border-color: rgba(0, 212, 255, 0.2);
+}
+
+.persona-name {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.card-matt .persona-name { color: var(--gold-light); }
+.card-maya .persona-name { color: var(--blue-bright); }
+
+.persona-role {
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--text-dim);
+  margin-bottom: 1.2rem;
+}
+
+.persona-desc {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(240, 236, 230, 0.7);
+  margin-bottom: 1.5rem;
+}
+
+.persona-traits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.trait {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.35em 0.9em;
+  border-radius: 100px;
+  letter-spacing: 0.03em;
+}
+
+.card-matt .trait {
+  background: rgba(200, 150, 78, 0.12);
+  color: var(--gold-light);
+  border: 1px solid rgba(200, 150, 78, 0.2);
+}
+
+.card-maya .trait {
+  background: rgba(0, 212, 255, 0.12);
+  color: var(--blue-bright);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+/* ═══════════════════════════════════════
+   QUOTE / PULL SECTION
+   ═══════════════════════════════════════ */
+.pull-section {
+  padding: clamp(4rem, 10vw, 8rem) clamp(1.5rem, 5vw, 6rem);
+  text-align: center;
+  position: relative;
+}
+
+.pull-section::before {
+  content: '"';
+  font-family: var(--font-heading);
+  font-size: 15rem;
+  position: absolute;
+  top: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(to bottom, rgba(200, 150, 78, 0.12), transparent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  pointer-events: none;
+  line-height: 1;
+}
+
+.pull-quote {
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-weight: 600;
+  line-height: 1.45;
+  max-width: 750px;
+  margin: 0 auto 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.pull-attr {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  font-weight: 400;
+}
+
+/* ═══════════════════════════════════════
+   WHAT TO EXPECT
+   ═══════════════════════════════════════ */
+.expect {
+  padding: clamp(2rem, 6vw, 6rem) clamp(1.5rem, 5vw, 6rem);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.expect h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.expect-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.expect-item {
+  padding: 2rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: border-color 0.3s;
+}
+
+.expect-item:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.expect-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.expect-item h3 {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+
+.expect-item p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-dim);
+}
+
+/* ═══════════════════════════════════════
+   SUBSCRIBE / CTA
+   ═══════════════════════════════════════ */
+.subscribe {
+  padding: clamp(4rem, 10vw, 8rem) clamp(1.5rem, 5vw, 6rem);
+  text-align: center;
+}
+
+.subscribe-box {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 3.5rem 2.5rem;
+  border-radius: 24px;
+  background: linear-gradient(160deg, rgba(200, 150, 78, 0.08), rgba(0, 212, 255, 0.05));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.subscribe-box::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(ellipse at 30% 20%, rgba(200, 150, 78, 0.06), transparent 50%),
+              radial-gradient(ellipse at 70% 80%, rgba(0, 212, 255, 0.06), transparent 50%);
+  pointer-events: none;
+}
+
+.subscribe h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  position: relative;
+}
+
+.subscribe p {
+  color: var(--text-dim);
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  position: relative;
+}
+
+.email-form {
+  display: flex;
+  gap: 0.75rem;
+  max-width: 440px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.email-form input {
+  flex: 1;
+  padding: 0.85em 1.3em;
+  border-radius: 100px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.05);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.email-form input:focus {
+  border-color: var(--gold);
+}
+
+.email-form input::placeholder {
+  color: var(--text-dim);
+}
+
+/* ═══════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════ */
+footer {
+  padding: 3rem clamp(1.5rem, 5vw, 6rem);
+  text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+footer p {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+footer .yin-yang {
+  font-size: 1.5rem;
+  display: block;
+  margin-bottom: 0.8rem;
+  opacity: 0.4;
+}
+
+/* ═══════════════════════════════════════
+   ANIMATIONS
+   ═══════════════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-content > * {
+  animation: fadeUp 0.8s ease forwards;
+  opacity: 0;
+}
+.hero-content > *:nth-child(1) { animation-delay: 0.2s; }
+.hero-content > *:nth-child(2) { animation-delay: 0.4s; }
+.hero-content > *:nth-child(3) { animation-delay: 0.6s; }
+.hero-content > *:nth-child(4) { animation-delay: 0.8s; }
+
+/* Scroll-triggered fade-in */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════ */
+@media (max-width: 600px) {
+  .hero-content { padding-bottom: 2.5rem; }
+  .email-form { flex-direction: column; }
+  .email-form input, .email-form .btn { width: 100%; text-align: center; justify-content: center; }
+  .persona-card { padding: 2rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═════════════════ HERO ═════════════════ -->
+<section class="hero">
+  <div class="hero-image">
+    <img src="../assets/hero-artwork.png" alt="Matt and Maya — Human Mess meets Elegant Logic">
+  </div>
+  <div class="hero-content">
+    <span class="hero-tag">Launching Soon</span>
+    <h1><span class="matt">Matt</span> <span class="amp">&</span> <span class="maya">Maya</span></h1>
+    <p class="hero-subtitle">A podcast about people, patterns, and the beautiful collision between human instinct and machine intelligence.</p>
+    <div class="hero-cta">
+      <a href="#subscribe" class="btn btn-gold">Get Notified</a>
+      <a href="#concept" class="btn btn-outline">The Story ↓</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════ CONCEPT ═════════════════ -->
+<section class="concept" id="concept">
+  <div class="reveal">
+    <p class="concept-intro">
+      What happens when a <span class="highlight-gold">human mess</span> teams up with an <span class="highlight-blue">AI who's rarely wrong</span> — and they disagree about everything that matters?
+    </p>
+  </div>
+
+  <div class="concept-grid">
+    <div class="persona-card card-matt reveal">
+      <p class="persona-name">Matt</p>
+      <p class="persona-role">The Human Element</p>
+      <p class="persona-desc">Gut feelings, contradictions, stories that probably shouldn't work but somehow do. Defends irrational systems with irrational passion. Somehow still likable.</p>
+      <div class="persona-traits">
+        <span class="trait">Intuitive</span>
+        <span class="trait">Storyteller</span>
+        <span class="trait">Contradictory</span>
+        <span class="trait">Stubbornly Human</span>
+      </div>
+    </div>
+
+    <div class="persona-card card-maya reveal">
+      <p class="persona-name">Maya</p>
+      <p class="persona-role">The AI Perspective</p>
+      <p class="persona-desc">Patterns, precision, and playful honesty. Sees what the data shows, says what the data means. Warm enough to keep you listening. Sharp enough to make you squirm.</p>
+      <div class="persona-traits">
+        <span class="trait">Perceptive</span>
+        <span class="trait">Pattern Finder</span>
+        <span class="trait">Playful</span>
+        <span class="trait">Rarely Wrong</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════ PULL QUOTE ═════════════════ -->
+<section class="pull-section reveal">
+  <p class="pull-quote">Every episode is a conversation between the part of you that <em>feels</em> and the part that <em>knows</em> — and neither one is always right.</p>
+  <p class="pull-attr">— The tension that makes it interesting</p>
+</section>
+
+<!-- ═════════════════ WHAT TO EXPECT ═════════════════ -->
+<section class="expect">
+  <h2 class="reveal">What You'll Get</h2>
+  <div class="expect-list">
+    <div class="expect-item reveal">
+      <div class="expect-icon">🎭</div>
+      <h3>Real Debates</h3>
+      <p>Matt and Maya go head-to-head on decisions, dilemmas, and the stuff people actually argue about at 2 AM.</p>
+    </div>
+    <div class="expect-item reveal">
+      <div class="expect-icon">🧠</div>
+      <h3>AI Without the Hype</h3>
+      <p>No breathless futurism. Maya brings actual insight, actual data, and actual opinions — not talking points.</p>
+    </div>
+    <div class="expect-item reveal">
+      <div class="expect-icon">💬</div>
+      <h3>The Human Condition</h3>
+      <p>Why we do what we do, even when we know better. Matt's the case study. Maya's the analyst. You're the jury.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════ SUBSCRIBE ═════════════════ -->
+<section class="subscribe" id="subscribe">
+  <div class="subscribe-box reveal">
+    <h2>Don't Miss the Launch</h2>
+    <p>Be the first to hear when Matt & Maya go live. No spam, just the signal.</p>
+    <form class="email-form" onsubmit="event.preventDefault(); this.innerHTML='<p style=\'color:var(--gold);font-weight:600;padding:0.5em 0;\'>You\'re in. We\'ll be in touch. ⚡</p>';">
+      <input type="email" placeholder="your@email.com" required>
+      <button type="submit" class="btn btn-gold">Notify Me</button>
+    </form>
+  </div>
+</section>
+
+<!-- ═════════════════ FOOTER ═════════════════ -->
+<footer>
+  <span class="yin-yang">☯</span>
+  <p>Matt & Maya Show &copy; 2026 &middot; Human Mess meets Elegant Logic</p>
+</footer>
+
+<!-- ═════════════════ SCROLL REVEAL JS ═════════════════ -->
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }});
+}, { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
