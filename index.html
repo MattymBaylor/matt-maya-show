@@ -496,56 +496,128 @@ footer .yin-yang {
    RESPONSIVE
    ═══════════════════════════════════════ */
 @media (max-width: 600px) {
+  /* --- HERO: let faces show, content sits below --- */
   .hero {
     min-height: auto;
-    padding-bottom: 0;
+    display: block;
+  }
+  .hero-image {
+    position: relative;
+    height: 55vh;
   }
   .hero-image::after {
     background: linear-gradient(
       to bottom,
-      transparent 15%,
-      rgba(8, 8, 12, 0.35) 40%,
-      rgba(8, 8, 12, 0.8) 60%,
-      var(--bg) 85%
+      transparent 40%,
+      rgba(8, 8, 12, 0.6) 70%,
+      var(--bg) 100%
     );
   }
   .hero-content {
+    position: relative;
+    z-index: 2;
     padding: 0 1.25rem 1.5rem;
+    margin-top: -4rem;
   }
   .hero-tag {
     font-size: 0.65rem;
     padding: 0.35em 1em;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
   }
   .hero h1 {
-    font-size: 2.6rem;
-    margin-bottom: 0.6rem;
+    font-size: 2.4rem;
+    margin-bottom: 0.5rem;
   }
   .hero-subtitle {
-    font-size: 0.95rem;
-    margin-bottom: 1.25rem;
-    color: rgba(240, 236, 230, 0.78);
-    text-shadow: 0 1px 8px rgba(0,0,0,0.6);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
   }
   .hero-cta {
-    gap: 0.75rem;
+    gap: 0.65rem;
   }
   .btn {
-    font-size: 0.82rem;
-    padding: 0.75em 1.6em;
+    font-size: 0.8rem;
+    padding: 0.7em 1.5em;
   }
-  .concept { padding: 3rem 1.25rem; }
-  .concept-intro { font-size: 1.35rem; margin-bottom: 2rem; }
-  .pull-section { padding: 3rem 1.25rem; }
-  .pull-quote { font-size: 1.15rem; }
-  .pull-section::before { font-size: 8rem; }
+
+  /* --- RADIO: compact card --- */
+  .hero-radio-wrap {
+    margin-top: 0.75rem;
+    padding: 0 1.25rem 1.5rem;
+  }
+  .radio-shell {
+    padding: 0.85rem;
+  }
+  .radio-topline {
+    font-size: 0.62rem;
+    gap: 0.4rem;
+    margin-bottom: 0.7rem;
+  }
+  .radio-kicker {
+    font-size: 0.7rem;
+    margin-bottom: 0.3rem;
+  }
+  .radio-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.35rem;
+  }
+  .radio-desc {
+    font-size: 0.82rem;
+    line-height: 1.45;
+  }
+  .radio-player-panel {
+    padding: 0.7rem;
+  }
+  .radio-display {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.6rem;
+  }
+  .radio-frequency { font-size: 0.82rem; }
+  .radio-mode { font-size: 0.68rem; }
+  .waveform {
+    height: 36px;
+    gap: 0.2rem;
+    margin-bottom: 0.7rem;
+  }
+  .radio-cta-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+  .radio-cta-pill {
+    justify-content: center;
+    text-align: center;
+    font-size: 0.72rem;
+    padding: 0.5em 0.8em;
+  }
+  .radio-runtime {
+    text-align: center;
+    font-size: 0.78rem;
+  }
+
+  /* --- REST OF PAGE: breathe --- */
+  .concept { padding: 2.5rem 1.25rem; }
+  .concept-intro { font-size: 1.25rem; margin-bottom: 1.75rem; }
+  .persona-card { padding: 1.75rem 1.25rem; }
+  .persona-name { font-size: 1.3rem; }
+  .persona-desc { font-size: 0.9rem; }
+  .pull-section { padding: 2.5rem 1.25rem; }
+  .pull-quote { font-size: 1.1rem; }
+  .pull-section::before { font-size: 7rem; }
   .expect { padding: 2rem 1.25rem; }
-  .expect h2 { font-size: 1.5rem; margin-bottom: 2rem; }
-  .subscribe { padding: 3rem 1.25rem; }
-  .subscribe-box { padding: 2.5rem 1.5rem; }
+  .expect h2 { font-size: 1.4rem; margin-bottom: 1.5rem; }
+  .expect-item { padding: 1.5rem; }
+  .expect-item h3 { font-size: 1rem; }
+  .expect-item p { font-size: 0.88rem; }
+  .subscribe { padding: 2.5rem 1.25rem; }
+  .subscribe-box { padding: 2rem 1.25rem; }
+  .subscribe h2 { font-size: 1.3rem; }
+  .subscribe p { font-size: 0.9rem; }
   .email-form { flex-direction: column; }
   .email-form input, .email-form .btn { width: 100%; text-align: center; justify-content: center; }
-  .persona-card { padding: 2rem 1.5rem; }
   footer { padding: 2rem 1.25rem; }
 }
 
