@@ -964,20 +964,29 @@ footer .yin-yang {
   50%      { transform: scaleY(1.10); }
 }
 
-/* ───── Desktop hero fix: push content below artwork text ───── */
+/* ───── Desktop hero fix: title at top center, clear of faces ───── */
 @media (min-width: 601px) {
   .hero {
     min-height: 100vh;
+    justify-content: flex-start;
   }
   .hero-content {
-    padding-bottom: 1.5rem;
-    margin-top: auto;
+    padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 6rem) 2rem;
+    max-width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero-content .hero-subtitle {
+    max-width: 600px;
+    text-shadow: 0 1px 12px rgba(8, 8, 12, 0.8);
   }
   .hero h1 {
     text-shadow: 0 2px 20px rgba(8, 8, 12, 0.9);
   }
-  .hero-subtitle {
-    text-shadow: 0 1px 12px rgba(8, 8, 12, 0.8);
+  .hero-cta {
+    justify-content: center;
   }
 }
 
