@@ -1459,8 +1459,8 @@ footer .footer-logo {
       </a>
     </div>
     <p class="email-note">Prefer email? Get a note when new episodes drop.</p>
-    <form class="email-form" onsubmit="event.preventDefault(); this.innerHTML='<p style=\'color:var(--gold);font-weight:600;padding:0.5em 0;\'>You\'re in. We\'ll be in touch. ⚡</p>';">
-      <input type="email" placeholder="your@email.com" required>
+    <form class="email-form" id="subscribeForm">
+      <input type="email" name="email" placeholder="your@email.com" required>
       <button type="submit" class="btn btn-gold">Notify Me</button>
     </form>
   </div>
@@ -1634,6 +1634,39 @@ footer .footer-logo {
   });
 
   setIdleState();
+
+  // ── Email subscribe form ──
+  const subForm = document.getElementById('subscribeForm');
+  if (subForm) {
+    subForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = subForm.email.value.trim();
+      const btn = subForm.querySelector('button');
+      if (!email) return;
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      try {
+        const res = await fetch('https://n8n.growthmindsetai.tech/webhook/matt-maya-subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email })
+        });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        subForm.innerHTML = '<p style="color:var(--gold);font-weight:600;padding:0.5em 0;">You\'re in. We\'ll be in touch. ⚡</p>';
+      } catch (err) {
+        btn.disabled = false;
+        btn.textContent = 'Notify Me';
+        let note = subForm.parentElement.querySelector('.form-error');
+        if (!note) {
+          note = document.createElement('p');
+          note.className = 'form-error';
+          note.style.cssText = 'color:#e07a5f;font-size:0.85rem;margin:0.75rem 0 0;position:relative;';
+          subForm.insertAdjacentElement('afterend', note);
+        }
+        note.textContent = "Couldn't sign you up — try again in a minute.";
+      }
+    });
+  }
 })();
 </script>
 
