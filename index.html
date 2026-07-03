@@ -503,6 +503,66 @@ body {
   position: relative;
 }
 
+/* ── Platform badges ── */
+.platforms {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-bottom: 2.25rem;
+  position: relative;
+}
+
+.platform {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  text-decoration: none;
+  padding: 0.65em 1.3em;
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.04);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.platform svg { width: 22px; height: 22px; flex-shrink: 0; }
+
+.platform-label {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+  text-align: left;
+}
+
+.platform-label small {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.platform-label strong {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.platform:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.35);
+}
+
+.email-note {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  margin-bottom: 0.9rem;
+  position: relative;
+}
+
 .email-form {
   display: flex;
   gap: 0.75rem;
@@ -1167,11 +1227,11 @@ footer .footer-logo {
     <img src="assets/hero-artwork.png" alt="Matt and Maya — Human Mess meets Elegant Logic">
   </div>
   <div class="hero-content">
-    <span class="hero-tag">Launching Soon</span>
+    <span class="hero-tag">Now Streaming</span>
     <h1><span class="matt">Matt</span> <span class="amp">&</span> <span class="maya">Maya</span></h1>
     <p class="hero-subtitle">A podcast about people, patterns, and the beautiful collision between human instinct and machine intelligence.</p>
     <div class="hero-cta">
-      <a href="#subscribe" class="btn btn-gold">Get Notified</a>
+      <a href="#subscribe" class="btn btn-gold">Listen Now</a>
       <a href="#concept" class="btn btn-outline">The Story ↓</a>
     </div>
   </div>
@@ -1356,8 +1416,49 @@ footer .footer-logo {
 <!-- ═════════════════ SUBSCRIBE ═════════════════ -->
 <section class="subscribe" id="subscribe">
   <div class="subscribe-box reveal">
-    <h2>Don't Miss the Launch</h2>
-    <p>Be the first to hear when Matt & Maya go live. No spam, just the signal.</p>
+    <h2>Listen &amp; Subscribe</h2>
+    <p>The show is live — follow on your favorite app and new episodes come to you.</p>
+    <div class="platforms">
+      <a class="platform" href="https://podcasts.apple.com/us/podcast/matt-maya-show/id1896938560" target="_blank" rel="noopener noreferrer" aria-label="Listen to the Matt & Maya Show on Apple Podcasts">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <defs>
+            <linearGradient id="mmApplePod" x1="12" y1="0" x2="12" y2="24" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#F452FF" />
+              <stop offset="1" stop-color="#832BC1" />
+            </linearGradient>
+          </defs>
+          <rect width="24" height="24" rx="5.5" fill="url(#mmApplePod)" />
+          <circle cx="12" cy="8.8" r="2.3" fill="#fff" />
+          <path d="M9.2 11.8c.45.95 1.2 1.45 2.8 1.45s2.35-.5 2.8-1.45c.2-.45-.15-.78-.55-.5-.65.46-1.35.66-2.25.66s-1.6-.2-2.25-.66c-.4-.28-.75.05-.55.5z" fill="#fff" />
+          <path d="M9.6 18.2c.4 1.15 1.05 1.8 2.4 1.8s2-.65 2.4-1.8c.5-1.45.55-2.95.15-3.7-.4-.72-1.35-1.05-2.55-1.05s-2.15.33-2.55 1.05c-.4.75-.35 2.25.15 3.7z" fill="#fff" />
+        </svg>
+        <span class="platform-label"><small>Listen on</small><strong>Apple Podcasts</strong></span>
+      </a>
+      <a class="platform" href="https://open.spotify.com/show/033Ah8biairbAIrgFI0A6O" target="_blank" rel="noopener noreferrer" aria-label="Listen to the Matt & Maya Show on Spotify">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="12" fill="#1ED760" />
+          <path fill="#000" d="M17.6 10.8a.9.9 0 0 1-.46-.12c-2.88-1.7-7.5-1.86-10.32-1a.9.9 0 1 1-.52-1.72c3.3-1 8.72-.8 12.18 1.25a.9.9 0 0 1-.88 1.59zm-.15 2.6a.75.75 0 0 1-1.03.25c-2.46-1.51-6.2-1.95-9.11-1.07a.75.75 0 1 1-.43-1.44c3.32-1 7.45-.5 10.27 1.23.35.21.46.67.3 1.03zm-1.12 2.52a.6.6 0 0 1-.82.2c-2.15-1.32-4.85-1.62-8.03-.9a.6.6 0 1 1-.27-1.16c3.48-.8 6.47-.45 8.88 1.02.28.17.37.55.24.84z" />
+        </svg>
+        <span class="platform-label"><small>Listen on</small><strong>Spotify</strong></span>
+      </a>
+      <a class="platform" href="https://music.amazon.com/podcasts/2d5f5247-5798-4070-9b00-6ee01cb124bc/matt-maya-show" target="_blank" rel="noopener noreferrer" aria-label="Listen to the Matt & Maya Show on Amazon Music">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect width="24" height="24" rx="5.5" fill="#25D1DA" />
+          <circle cx="12" cy="10.6" r="5" fill="#0B2540" />
+          <path d="M10.4 8.5v4.2l3.4-2.1z" fill="#25D1DA" />
+          <path d="M7.7 15.8c2.7 1.5 5.9 1.5 8.6 0" stroke="#0B2540" stroke-width="1.4" fill="none" stroke-linecap="round" />
+        </svg>
+        <span class="platform-label"><small>Listen on</small><strong>Amazon Music</strong></span>
+      </a>
+      <a class="platform" href="https://feeds.buzzsprout.com/2625238.rss" target="_blank" rel="noopener noreferrer" aria-label="Subscribe to the Matt & Maya Show RSS feed">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect width="24" height="24" rx="5.5" fill="#C8964E" />
+          <path d="M5.5 5.94v2.83c5.37 0 9.73 4.36 9.73 9.73h2.83c0-6.93-5.63-12.56-12.56-12.56zm0 5.66v2.83c2.24 0 4.07 1.83 4.07 4.07h2.83c0-3.81-3.09-6.9-6.9-6.9zM7.18 16.14a1.68 1.68 0 1 1 0 3.36 1.68 1.68 0 0 1 0-3.36z" fill="#0A0A0F" />
+        </svg>
+        <span class="platform-label"><small>Any app</small><strong>RSS Feed</strong></span>
+      </a>
+    </div>
+    <p class="email-note">Prefer email? Get a note when new episodes drop.</p>
     <form class="email-form" onsubmit="event.preventDefault(); this.innerHTML='<p style=\'color:var(--gold);font-weight:600;padding:0.5em 0;\'>You\'re in. We\'ll be in touch. ⚡</p>';">
       <input type="email" placeholder="your@email.com" required>
       <button type="submit" class="btn btn-gold">Notify Me</button>
